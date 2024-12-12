@@ -28,13 +28,13 @@ class UserAgents {
   }
 
   static Future<List<Map<String, dynamic>>> get desktop async {
-    final url = 'https://raw.githubusercontent.com/danemadsen/most-common-user-agents/refs/heads/main/desktop.json';
+    final url = 'https://raw.githubusercontent.com/danemadsen/most_common_user_agents/refs/heads/main/desktop.json';
 
     return _getUserAgents(url, desktopUserAgents);
   }
 
   static Future<List<Map<String, dynamic>>> get mobile async {
-    final url = 'https://raw.githubusercontent.com/danemadsen/most-common-user-agents/refs/heads/main/mobile.json';
+    final url = 'https://raw.githubusercontent.com/danemadsen/most_common_user_agents/refs/heads/main/mobile.json';
 
     return _getUserAgents(url, mobileUserAgents);
   }
