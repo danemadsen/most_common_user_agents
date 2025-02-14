@@ -22,11 +22,22 @@ jobs:
         run: |
           python extract_json.py
 
+      - name: Check for changes
+        id: git-check
+        run: |
+          git add mobile.json desktop.json
+          if git diff --cached --quiet; then
+            echo "No changes detected"
+            echo "should_commit=false" >> $GITHUB_ENV
+          else
+            echo "Changes detected"
+            echo "should_commit=true" >> $GITHUB_ENV
+          fi
+
       - name: Commit data to repository
+        if: env.should_commit == 'true'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add mobile.json
-          git add desktop.json
-          git commit -m "Update Most Common User Agents" --allow-empty
+          git commit -m "Update Most Common User Agents"
           git push
